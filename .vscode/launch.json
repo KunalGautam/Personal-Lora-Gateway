@@ -12,9 +12,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "/Users/kunal/Documents/PlatformIO/Projects/LORA Gateway/.pio/build/esp32doit-devkit-v1/firmware.elf",
-            "projectEnvName": "esp32doit-devkit-v1",
-            "toolchainBinDir": "/Users/kunal/.platformio/packages/toolchain-xtensa32/bin",
+            "executable": "/Users/kunal/Documents/PlatformIO/Projects/Personal-Lora-Gateway/.pio/build/nodemcuv2/firmware.elf",
+            "projectEnvName": "nodemcuv2",
+            "toolchainBinDir": "/Users/kunal/.platformio/packages/toolchain-xtensa/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
@@ -25,9 +25,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "/Users/kunal/Documents/PlatformIO/Projects/LORA Gateway/.pio/build/esp32doit-devkit-v1/firmware.elf",
-            "projectEnvName": "esp32doit-devkit-v1",
-            "toolchainBinDir": "/Users/kunal/.platformio/packages/toolchain-xtensa32/bin",
+            "executable": "/Users/kunal/Documents/PlatformIO/Projects/Personal-Lora-Gateway/.pio/build/nodemcuv2/firmware.elf",
+            "projectEnvName": "nodemcuv2",
+            "toolchainBinDir": "/Users/kunal/.platformio/packages/toolchain-xtensa/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
