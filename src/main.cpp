@@ -60,8 +60,18 @@ void setup()
     AsyncResponseStream *response = request->beginResponseStream("text/html");
     response->print(webHEAD);
     response->print(webDS1);
-    response->print(webDS2);
-    response->print(webDS3);
+    // response->print(webDS21);
+    // response->print(webDS22);
+    // response->print(webDS23);
+    // response->print(webDS24);
+    // response->print(webDS25);
+    // response->print(webDS26);
+    // response->print(webDS27);
+    // response->print(webDS28);
+    // response->print(webDS29);
+    // response->print(webDS30);
+    // response->print(webDS31);
+    response->print(webDS4);
     response->print(webFOOTER);
     request->send(response);
   });
@@ -77,7 +87,9 @@ void setup()
    server.on("/fw", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
     response->print(webHEAD);
-    response->print(webFW);
+    response->print(webFW1);
+    response->print(FWVER);
+    response->print(webFW2);
     response->print(webFOOTER);
     request->send(response);
   });
