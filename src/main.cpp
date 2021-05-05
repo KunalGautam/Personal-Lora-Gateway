@@ -10,7 +10,7 @@
 #include "ESPAsyncWebServer.h"
 
 #define FWVER 0.01
-#define FWRELDATE 05MAY2021
+#define FWRELDATE "05MAY2021"
 
 #include <html.h>
 
@@ -34,78 +34,67 @@ void setup()
   server.begin();
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
-    response->print(webHEAD);
-    response->print(webIndex);
-    response->print(webFOOTER);
+    response->printf_P(webHEAD);
+    response->printf_P(webIndex);
+    response->printf_P(webFOOTER);
     request->send(response);
   });
 
    server.on("/wc", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
-    response->print(webHEAD);
-    response->print(webWC);
-    response->print(webFOOTER);
+    response->printf_P(webHEAD);
+    response->printf_P(webWC);
+    response->printf_P(webFOOTER);
     request->send(response);
   });
 
    server.on("/ss", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
-    response->print(webHEAD);
-    response->print(webSS);
-    response->print(webFOOTER);
+    response->printf_P(webHEAD);
+    response->printf_P(webSS);
+    response->printf_P(webFOOTER);
     request->send(response);
   });
 
    server.on("/ds", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
-    response->print(webHEAD);
-    response->print(webDS1);
-    // response->print(webDS21);
-    // response->print(webDS22);
-    // response->print(webDS23);
-    // response->print(webDS24);
-    // response->print(webDS25);
-    // response->print(webDS26);
-    // response->print(webDS27);
-    // response->print(webDS28);
-    // response->print(webDS29);
-    // response->print(webDS30);
-    // response->print(webDS31);
-    response->print(webDS4);
-    response->print(webFOOTER);
+    response->printf_P(webHEAD);
+    response->printf_P(webDS1);
+    response->printf_P(webDS2);
+    response->printf_P(webDS3);
+    response->printf_P(webFOOTER);
     request->send(response);
   });
 
    server.on("/wec", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
-    response->print(webHEAD);
-    response->print(webWEC);
-    response->print(webFOOTER);
+    response->printf_P(webHEAD);
+    response->printf_P(webWEC);
+    response->printf_P(webFOOTER);
     request->send(response);
   });
 
    server.on("/fw", HTTP_GET, [](AsyncWebServerRequest *request) {
     AsyncResponseStream *response = request->beginResponseStream("text/html");
-    response->print(webHEAD);
-    response->print(webFW1);
+    response->printf_P(webHEAD);
+    response->printf_P(webFW1);
     response->print(FWVER);
-    response->print(webFW2);
-    response->print(webFOOTER);
+    response->printf_P(webFW2);
+    response->printf_P(webFOOTER);
     request->send(response);
   });
 
 
 
-  server.on("/a.css", HTTP_GET, [](AsyncWebServerRequest *request) {
-    AsyncResponseStream *response = request->beginResponseStream("text/css");
-    response->print(webCSS);
-    request->send(response);
+  server.on("/a.css", HTTP_GET, [](AsyncWebServerRequest * request) {
+    // AsyncResponseStream *response = request->beginResponseStream("text/css");
+    // response->printf_P(webCSS);
+    request->send_P(200, PSTR("text/html"),webCSS);
   });
 
   server.on("/a.js", HTTP_GET, [](AsyncWebServerRequest *request) {
-    AsyncResponseStream *response = request->beginResponseStream("text/javascript");
-    response->print(webJS);
-    request->send(response); });
+    request->send_P(200, PSTR("text/html"),webJS);
+     });
 }
 
 void loop()
