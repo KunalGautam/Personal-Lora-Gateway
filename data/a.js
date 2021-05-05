@@ -1,16 +1,1 @@
-function setSelectedIndex(s, valsearch) {
-    if (valsearch == "Asia/Calcutta") { // Safari fix
-        valsearch = "Asia/Kolkata";
-    }
-// Loop through all the items in drop down list
-    for (i = 0; i < s.options.length; i++) {
-        if (s.options[i].value == valsearch) {
-// Item is found. Set its property and exit
-            s.options[i].selected = true;
-            break;
-        }
-    }
-    return;
-}
-
-setSelectedIndex(document.getElementById("timeZoneSelect"), Intl.DateTimeFormat().resolvedOptions().timeZone);
+function setSelectedIndex(e,t){for("Asia/Calcutta"==t&&(t="Asia/Kolkata"),i=0;i<e.options.length;i++)if(e.options[i].value==t){e.options[i].selected=!0;break}}setSelectedIndex(document.getElementById("timeZoneSelect"),Intl.DateTimeFormat().resolvedOptions().timeZone);
