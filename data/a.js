@@ -1,1 +1,0 @@
-function setSelectedIndex(e,t){for("Asia/Calcutta"==t&&(t="Asia/Kolkata"),i=0;i<e.options.length;i++)if(e.options[i].value==t){e.options[i].selected=!0;break}}setSelectedIndex(document.getElementById("timeZoneSelect"),Intl.DateTimeFormat().resolvedOptions().timeZone);
