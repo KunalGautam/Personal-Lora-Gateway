@@ -9,29 +9,94 @@
 #endif
 #include "ESPAsyncWebServer.h"
 
-DNSServer dnsServer;
-AsyncWebServer server(80); 
+#define FWVER 0.01
+#define FWRELDATE 05MAY2021
 
-void setup(){
-   Serial.begin(115200);
- 
-  if(!SPIFFS.begin()){
-        Serial.println("An Error has occurred while mounting SPIFFS");
-        return;
-  }
+#include <html.h>
+
+DNSServer dnsServer;
+AsyncWebServer server(80);
+
+void notFound(AsyncWebServerRequest *request)
+{
+  request->send(404, "text/plain", "Not found");
+}
+
+void setup()
+{
+  Serial.begin(115200);
+  Serial.println('Welcome');
+
   //your other setup stuff...
   WiFi.softAP("esp-captive");
   dnsServer.start(53, "*", WiFi.softAPIP());
   //more handlers...
   server.begin();
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/index.html", "text/html");
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/html");
+    response->print(webHEAD);
+    response->print(webIndex);
+    response->print(webFOOTER);
+    request->send(response);
   });
-  server.on("/a.css", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/a.css", "text/css");
+
+   server.on("/wc", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/html");
+    response->print(webHEAD);
+    response->print(webWC);
+    response->print(webFOOTER);
+    request->send(response);
   });
+
+   server.on("/ss", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/html");
+    response->print(webHEAD);
+    response->print(webSS);
+    response->print(webFOOTER);
+    request->send(response);
+  });
+
+   server.on("/ds", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/html");
+    response->print(webHEAD);
+    response->print(webDS1);
+    response->print(webDS2);
+    response->print(webDS3);
+    response->print(webFOOTER);
+    request->send(response);
+  });
+
+   server.on("/wec", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/html");
+    response->print(webHEAD);
+    response->print(webWEC);
+    response->print(webFOOTER);
+    request->send(response);
+  });
+
+   server.on("/fw", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/html");
+    response->print(webHEAD);
+    response->print(webFW);
+    response->print(webFOOTER);
+    request->send(response);
+  });
+
+
+
+  server.on("/a.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/css");
+    response->print(webCSS);
+    request->send(response);
+  });
+
+  server.on("/a.js", HTTP_GET, [](AsyncWebServerRequest *request) {
+    AsyncResponseStream *response = request->beginResponseStream("text/javascript");
+    response->print(webJS);
+    request->send(response); });
 }
 
-void loop(){
+void loop()
+{
   dnsServer.processNextRequest();
 }
